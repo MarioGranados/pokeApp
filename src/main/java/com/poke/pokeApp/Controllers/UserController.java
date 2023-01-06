@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +18,8 @@ import com.poke.pokeApp.Models.User;
 import com.poke.pokeApp.Repo.UserRepo;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000/")
+@RequestMapping("/api")
 public class UserController {
 
     private final UserRepo userRepo;
@@ -43,8 +45,8 @@ public class UserController {
         return userRepo.findById(id);
     }
 
-    @GetMapping("/users/findUser/{username}+{password}")
-    User userLogin(@RequestParam String username, @RequestParam String password) {
+    @GetMapping("/users/findUser/{username}:{password}")
+    User userLogin(@PathVariable String username, @PathVariable String password) {
         return userRepo.findUserByUsernameAndPassword(username, password);
     }
 
