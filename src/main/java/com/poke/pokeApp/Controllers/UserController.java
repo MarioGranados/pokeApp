@@ -45,7 +45,7 @@ public class UserController {
         return userRepo.findById(id);
     }
 
-    @GetMapping("/users/findUser/{username}:{password}")
+    @GetMapping("/users/login")
     User userLogin(@PathVariable String username, @PathVariable String password) {
         return userRepo.findUserByUsernameAndPassword(username, password);
     }
