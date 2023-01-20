@@ -1,13 +1,11 @@
 package com.poke.pokeApp.Models;
 
-import jakarta.annotation.Generated;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
@@ -15,23 +13,27 @@ import jakarta.persistence.Table;
 @Table(name = "pokemon")
 public class Pokemon {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) 
+    @GeneratedValue(strategy = GenerationType.AUTO) 
     private Long id;
 
     @Column
-    //just call the pokemon api by pokenumber
     private Long pokedexNumber;
 
     @Column
-    //this one is for search results
     private String pokemonName;
 
     @Column
-    //have some sort of favorite method
-    private boolean favorite;
+    private String favorite;
 
     Pokemon() {
         //default
+    }
+
+    Pokemon(Long id, Long pokedexNumber, String pokemonName, String favorite) {
+        this.id = id;
+        this.pokedexNumber = pokedexNumber;
+        this.pokemonName = pokemonName;
+        this.favorite = favorite;
     }
 
     public Long getId() {
@@ -42,7 +44,11 @@ public class Pokemon {
         return this.pokemonName;
     }
 
-    public boolean favorite() {
+    public Long getPokedexNumber() {
+        return this.pokedexNumber;
+    }
+
+    public String getFavorite() {
         return this.favorite;
     }
 
@@ -50,12 +56,24 @@ public class Pokemon {
         this.pokemonName = newPokemonName;
     }
 
-    public void setFavorite(boolean isFavorite) {
+    public void setFavorite(String isFavorite) {
         this.favorite = isFavorite;
+    }
+
+    public void setPokedexNumber(Long pokedexNumber) {
+        this.pokedexNumber = pokedexNumber;
     }
 
     @ManyToOne(fetch = FetchType.LAZY)
     private User user;
+
+    public User getUser() {
+        return this.user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
 
 }

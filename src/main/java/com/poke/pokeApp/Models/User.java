@@ -15,6 +15,35 @@ import jakarta.persistence.Table;
 @Table(name = "users")
 public class User {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column
+    private String username;
+
+    @Column
+    private String password;
+
+    @Column
+    private String email;
+
+    @Column
+    private String DOB;
+
+    User(Long id, String username, String password, String email, String DOB) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.DOB = DOB;
+    }
+
+    User() {}
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Pokemon> pokemons;
+
     public Long getId() {
         return this.id;
     }
@@ -80,33 +109,6 @@ public class User {
         return this;
     }
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @Column
-    private String username;
-
-    @Column
-    private String password;
-
-    @Column
-    private String email;
-
-    @Column
-    private String DOB;
-
-    User(Long id, String username, String password, String email, String DOB) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.email = email;
-        this.DOB = DOB;
-    }
-
-    User() {}
-
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<Pokemon> pokemons;
+    
 
 }
