@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 @Table(name = "pokemon")
 public class Pokemon {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO) 
+    @GeneratedValue(strategy = GenerationType.IDENTITY) 
     private Long id;
 
     @Column

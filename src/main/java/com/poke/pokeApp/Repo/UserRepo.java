@@ -13,4 +13,6 @@ import com.poke.pokeApp.Models.User;
 public interface UserRepo extends JpaRepository<User, Long> {
     @Query(value = "SELECT * FROM users WHERE username = ?1 AND password = ?2 LIMIT 1", nativeQuery = true)
     User findUserByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
+
+    User findByUsername(String username);
 }
