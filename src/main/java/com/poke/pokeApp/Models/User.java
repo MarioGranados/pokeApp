@@ -39,7 +39,8 @@ public class User {
         this.DOB = DOB;
     }
 
-    User() {}
+    public User() {
+    }
 
     public User(User copy) {
         id = copy.id; // This line is SUPER important! Many things won't work if it's absent
@@ -68,20 +69,20 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return this.password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public String getEmail() {
         return this.email;
     }
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getDOB() {
@@ -91,32 +92,5 @@ public class User {
     public void setDOB(String DOB) {
         this.DOB = DOB;
     }
-
-    public User id(Long id) {
-        setId(id);
-        return this;
-    }
-
-    public User username(String username) {
-        setUsername(username);
-        return this;
-    }
-
-    public User password(String password) {
-        setPassword(password);
-        return this;
-    }
-
-    public User email(String email) {
-        setEmail(email);
-        return this;
-    }
-
-    public User DOB(String DOB) {
-        setDOB(DOB);
-        return this;
-    }
-
-    
 
 }
