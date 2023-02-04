@@ -3,6 +3,7 @@ package com.poke.pokeApp.Controllers;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,9 +23,11 @@ import com.poke.pokeApp.Repo.UserRepo;
 public class UserController {
 
     private final UserRepo userRepo;
+    private final PasswordEncoder passwordEncoder;
 
-    public UserController(UserRepo userRepo) {
+    public UserController(UserRepo userRepo, PasswordEncoder passwordEncoder) {
         this.userRepo = userRepo;
+        this.passwordEncoder = passwordEncoder;
     }
 
     // /user
@@ -40,6 +43,8 @@ public class UserController {
 
     @PostMapping("/sign-up")
     User newUser(@RequestBody User user) {
+        String hash = passwordEncoder.encode(user.getPassword());
+        user.setPassword(hash);
         return userRepo.save(user);
     }
 
