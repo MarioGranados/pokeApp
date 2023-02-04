@@ -10,16 +10,13 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
-import com.poke.pokeApp.Service.UserDetailsLoader;
-
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration {
 
-   private UserDetailsLoader usersLoader;
 
-   public SecurityConfiguration(UserDetailsLoader usersLoader) {
-      this.usersLoader = usersLoader;
+   public SecurityConfiguration() {
+    
    }
 
    @Bean
@@ -47,7 +44,7 @@ public class SecurityConfiguration {
               /* Pages that can be viewed without having to log in */
               .and()
               .authorizeHttpRequests()
-              .requestMatchers("/", "/api/**", "/api/sign-up/**") // anyone can see the home and the ads pages
+              .requestMatchers("/", "/api/**") // anyone can see the home and the ads pages
               .permitAll()
               /* Pages that require authentication */
               .and()

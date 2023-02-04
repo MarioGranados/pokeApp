@@ -36,13 +36,8 @@ public class UserController {
         return userRepo.findAll();
     }
 
-    @GetMapping("/users/login")
-    User userLogin(@PathVariable String username, @PathVariable String password) {
-        return userRepo.findUserByUsernameAndPassword(username, password);
-    }
-
-    @PostMapping("/sign-up")
-    User newUser(@RequestBody User user) {
+    @PostMapping("/login")
+    User createUser(@RequestBody User user){
         String hash = passwordEncoder.encode(user.getPassword());
         user.setPassword(hash);
         return userRepo.save(user);
