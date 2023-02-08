@@ -1,4 +1,4 @@
-package com.poke.pokeApp;
+package com.poke.pokeApp.Service;
 
 import java.io.IOException;
 import java.util.List;
@@ -14,7 +14,6 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.poke.pokeApp.Repo.UserRepo;
-import com.poke.pokeApp.Service.JwtUtil;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
