@@ -13,7 +13,7 @@ import com.poke.pokeApp.Models.Pokemon;
 import com.poke.pokeApp.Repo.PokemonRepo;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000/")
+@CrossOrigin(origins = {"http://localhost:3000"})
 @RequestMapping("/api")
 public class PokemonController {
     private final PokemonRepo pokemonRepo;
